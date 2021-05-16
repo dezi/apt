@@ -82,3 +82,50 @@
 
 /* unrolling is faster combined with an optimizing compiler */
 #define SHA2_UNROLL_TRANSFORM
+
+#if __APPLE__
+
+#ifndef DEZIBEZI
+
+#define DEZIBEZI
+
+#include <stdio.h>
+#include <stddef.h>
+#include <stdint.h>
+
+static void *memrchr(const void *s, int c, size_t n)
+{
+   const char *w = (const char*) s;
+
+   for (int inx = n - 1; inx >= 0; inx--)
+   {
+      if (w[ inx ] == c)
+      {
+         return (void*) (w + inx);
+      }
+   }
+
+   return NULL;
+}
+
+static char *strchrnul(const char *s, int c)
+{
+   char *w = (char *) s;
+
+   while (*w)
+   {
+      if (*w == c) break;
+   }
+
+   return w;
+}
+
+static uint32_t le32toh(uint32_t little_endian_32bits)
+{
+   return little_endian_32bits;
+}
+
+#endif
+
+#endif
+

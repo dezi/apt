@@ -6,6 +6,7 @@ project(apt)
 cmake_minimum_required(VERSION 3.4.0)
 # Generic header locations
 include_directories(${PROJECT_BINARY_DIR}/include)
+include_directories(/usr/local/include)
 
 
 enable_testing()
@@ -239,11 +240,18 @@ add_subdirectory(apt-pkg)
 add_subdirectory(apt-private)
 add_subdirectory(cmdline)
 add_subdirectory(completions)
+
+if (WITH_DOC)
 add_subdirectory(doc)
+endif()
+
 add_subdirectory(dselect)
 add_subdirectory(ftparchive)
 add_subdirectory(methods)
+
+if (WITH_TESTS)
 add_subdirectory(test)
+endif()
 
 if (USE_NLS)
 add_subdirectory(po)

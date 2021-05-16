@@ -14,6 +14,7 @@
 #include <apt-pkg/macros.h>
 #include <string>
 #include <string.h>
+#include <config.h>
 
 namespace APT {
 

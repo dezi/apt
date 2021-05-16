@@ -29,9 +29,9 @@ void DeleteAllButMostRecent(std::string dir, int KeepFiles)
          struct stat buf_l, buf_r;
          stat(lhs.c_str(), &buf_l);
          stat(rhs.c_str(), &buf_r);
-         if (buf_l.st_mtim.tv_sec == buf_r.st_mtim.tv_sec)
-            return buf_l.st_mtim.tv_nsec < buf_r.st_mtim.tv_nsec;
-         return buf_l.st_mtim.tv_sec < buf_r.st_mtim.tv_sec;
+         if (buf_l.st_mtimespec.tv_sec == buf_r.st_mtimespec.tv_sec)
+            return buf_l.st_mtimespec.tv_nsec < buf_r.st_mtimespec.tv_nsec;
+         return buf_l.st_mtimespec.tv_sec < buf_r.st_mtimespec.tv_sec;
       }
    };
 

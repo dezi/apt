@@ -11,6 +11,7 @@
 #include <netdb.h>
 
 #include <arpa/nameser.h>
+#include <arpa/nameser_compat.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <resolv.h>
@@ -49,12 +50,14 @@ bool GetSrvRecords(std::string host, int port, std::vector<SrvRec> &Result)
    struct servent *s_ent = nullptr;
    std::vector<char> buf(1024);
 
-   res = getservbyport_r(htons(port), "tcp", &s_ent_buf, buf.data(), buf.size(), &s_ent);
-   if (res != 0 || s_ent == nullptr)
-      return false;
+   return false;
 
-   strprintf(target, "_%s._tcp.%s", s_ent->s_name, host.c_str());
-   return GetSrvRecords(target, Result);
+   //res = getservbyport_r(htons(port), "tcp", &s_ent_buf, buf.data(), buf.size(), &s_ent);
+   //if (res != 0 || s_ent == nullptr)
+   //   return false;
+
+   //strprintf(target, "_%s._tcp.%s", s_ent->s_name, host.c_str());
+   //return GetSrvRecords(target, Result);
 }
 
 bool GetSrvRecords(std::string name, std::vector<SrvRec> &Result)

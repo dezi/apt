@@ -1267,11 +1267,11 @@ void pkgDPkgPM::StartPtyMagic()						/*{{{*/
 	       struct winsize win;
 	       if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &win) < 0)
 		  _error->Errno("ioctl", "Getting TIOCGWINSZ from stdout failed!");
-	       if (ioctl(d->master, TIOCSWINSZ, &win) < 0)
-		  _error->Errno("ioctl", "Setting TIOCSWINSZ for master fd %d failed!", d->master);
+	       //if (ioctl(d->master, TIOCSWINSZ, &win) < 0)
+		  //_error->Errno("ioctl", "Setting TIOCSWINSZ for master fd %d failed!", d->master);
 	    }
-	    if (tcsetattr(d->master, TCSANOW, &d->tt) == -1)
-	       _error->Errno("tcsetattr", "Setting in Start via TCSANOW for master fd %d failed!", d->master);
+	    //if (tcsetattr(d->master, TCSANOW, &d->tt) == -1)
+	       //_error->Errno("tcsetattr", "Setting in Start via TCSANOW for master fd %d failed!", d->master);
 
 	    raw_tt = d->tt;
 	    cfmakeraw(&raw_tt);
